@@ -1,0 +1,17 @@
+from collections import deque
+
+n = int(input())
+d = deque()
+
+for _ in range(n):
+    # Split the input into the command and its optional value
+    cmd, *val = input().split()
+    
+    # Use getattr to find the method (e.g., d.append) and call it with the value
+    if val:
+        getattr(d, cmd)(val[0])
+    else:
+        getattr(d, cmd)()
+
+# Print the final deque elements separated by a space
+print(*d)
