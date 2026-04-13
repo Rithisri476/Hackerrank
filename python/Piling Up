@@ -1,0 +1,24 @@
+from collections import deque
+
+for _ in range(int(input())):
+    n = int(input())
+    blocks = deque(map(int, input().split()))
+    
+    last_picked = float('inf')  # Start with an "infinitely" large base
+    possible = True
+    
+    while blocks:
+        # Pick the larger of the two ends
+        if blocks[0] >= blocks[-1]:
+            current = blocks.popleft()
+        else:
+            current = blocks.pop()
+            
+        # If the current block is bigger than the last one, it's impossible
+        if current > last_picked:
+            possible = False
+            break
+            
+        last_picked = current
+        
+    print("Yes" if possible else "No")
